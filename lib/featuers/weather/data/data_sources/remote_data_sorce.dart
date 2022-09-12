@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:weather_app/core/api/api_constant.dart';
 import 'package:weather_app/core/api/dio_consumer.dart';
 import 'package:weather_app/core/api/end_point.dart';
 import 'package:weather_app/core/errors/exception.dart';

@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/core/utils/component.dart';
@@ -115,7 +113,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       child: CachedNetworkImage(
                         imageUrl: _iconGetter(state.weather.weather[0].icon),
                         fit: BoxFit.cover,
-                        //errorWidget: (context,url,error)=>Icon(Icons.error_outline,size: 50,color: Colors.red,),
+                        errorWidget: (context,url,error)=>Icon(Icons.error_outline,size: 50,color: Colors.red,),
                       ),
                     ),
                   ],

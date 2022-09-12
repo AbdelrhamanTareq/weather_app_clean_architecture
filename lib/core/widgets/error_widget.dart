@@ -39,8 +39,8 @@ class ErrorWidget extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 15),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.lightBlue,
-                onPrimary: Theme.of(context).primaryColor,
+                backgroundColor: Colors.lightBlue,
+                foregroundColor: Theme.of(context).primaryColor,
                 elevation: 500,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),

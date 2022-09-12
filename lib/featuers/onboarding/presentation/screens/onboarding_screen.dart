@@ -1,8 +1,5 @@
 import 'package:csc_picker/csc_picker.dart';
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/core/utils/app_strings.dart';
