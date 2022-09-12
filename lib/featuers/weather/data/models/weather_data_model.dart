@@ -67,10 +67,10 @@ class WeatherModel extends Weather {
 
 class MainModel extends Main {
   MainModel(
-      {required double temp,
-      required double feelsLike,
-      required double tempMin,
-      required double tempMax,
+      {required dynamic temp,
+      required dynamic feelsLike,
+      required dynamic tempMin,
+      required dynamic tempMax,
       required int pressure,
       required int humidity})
       : super(

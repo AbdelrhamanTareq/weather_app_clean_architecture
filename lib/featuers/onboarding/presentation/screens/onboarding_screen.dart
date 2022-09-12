@@ -1,8 +1,8 @@
-import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/core/utils/app_strings.dart';
+import 'package:weather_app/core/widgets/city_picker.dart';
 import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
 import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_states.dart';
 import 'package:weather_app/featuers/onboarding/presentation/widgets/onboarding_widget.dart';
@@ -131,7 +131,18 @@ class OnboardingScreen extends StatelessWidget {
                         desc: _onBoardingList[i].description,
                       ),
                       (i == _onBoardingList.length - 1)
-                          ? CSCPicker(
+                          ? CityPicker(
+                              onStateChanged: (value) {
+                                 BlocProvider.of<OnboardingCubit>(context)
+                                    .chooseState(value??AppStrings.defaultCountry);
+                              },
+                              onCountryChanged:  (value) {
+                               BlocProvider.of<OnboardingCubit>(context)
+                                    .chooseCountry();
+                              },
+                            )
+                          /*
+                           CSCPicker(
                               layout: Layout.horizontal,
                               onStateChanged: (value) {
                                 BlocProvider.of<OnboardingCubit>(context)
@@ -147,6 +158,7 @@ class OnboardingScreen extends StatelessWidget {
                               },
                               showCities: false,
                             )
+                            */
                           : Container()
                     ],
                   );

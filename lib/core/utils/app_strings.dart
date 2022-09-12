@@ -25,4 +25,9 @@ class AppStrings {
   ///////////////////////////////////////////////////
   static const onboardingFinishedToken = "ONBOARDING_FINISHED_TOKEN";
   static const state = "STATE";
+  //////////////////////////////////////////////////
+  static const defaultCountry = "Egypt";
+  //////////////////////////////////////////////////
+  static const changeYourCountry = "Change your country";
+
 }

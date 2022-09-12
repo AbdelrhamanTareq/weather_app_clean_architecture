@@ -4,8 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app/core/utils/app_strings.dart';
 import 'package:weather_app/core/utils/component.dart';
+import 'package:weather_app/core/widgets/drawer.dart' as app_drawer;
 import 'package:weather_app/core/widgets/error_widget.dart' as error_widget;
+import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
 import 'package:weather_app/featuers/weather/domain/entity/five_days_weather.dart';
 import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weahter_states.dart';
 import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weather_cubit.dart';
@@ -22,15 +25,34 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  final String _userState = getUserState();
+  String _userState = getUserState();
+
+  bool _isCityChangedInDrawer = false;
 
   void _getWeatherData(String? name) {
     BlocProvider.of<WeatherCubit>(context).getWeatherData(name: name);
   }
 
-  _getFiveDaysWeather(String? name) {
+  void _getFiveDaysWeather(String? name) {
     BlocProvider.of<FiveDaysWeatherCubit>(context)
         .getFiveDaysWeatherData(name: name);
+  }
+
+  void _onCountryChange() {
+    BlocProvider.of<OnboardingCubit>(context).chooseCountry();
+  }
+
+  void _onStateChange(String state) {
+    BlocProvider.of<OnboardingCubit>(context).chooseState(state);
+  }
+
+  void _changeCity() async {
+    //setState(() {});
+    _isCityChangedInDrawer = true;
+   _userState =  getUserState();
+    _getFiveDaysWeather(_userState);
+    _getWeatherData(_userState);
+    
   }
 
   @override
@@ -43,7 +65,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: app_drawer.Drawer(
+        onCountryChanged: (value) {
+          _onCountryChange();
+        },
+        onStateChanged: (value) {
+          _onStateChange(value ?? AppStrings.defaultCountry);
+        },
+        changeCity: () => _changeCity(),
+      ),
       body: Container(
         color: Colors.lightBlue[200],
         child: CustomScrollView(
@@ -62,7 +92,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
         [
           BlocConsumer<WeatherCubit, WeatherStates>(
             listener: (context, state) {
-              print("state = $state");
               if (state is ErrorWeatherState) {
                 /*
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -113,7 +142,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       child: CachedNetworkImage(
                         imageUrl: _iconGetter(state.weather.weather[0].icon),
                         fit: BoxFit.cover,
-                        errorWidget: (context,url,error)=>Icon(Icons.error_outline,size: 50,color: Colors.red,),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.error_outline,
+                          size: 50,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
                   ],
