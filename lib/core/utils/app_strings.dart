@@ -29,5 +29,7 @@ class AppStrings {
   static const defaultCountry = "Egypt";
   //////////////////////////////////////////////////
   static const changeYourCountry = "Change your country";
+  /////////////////////////////////////////////////
+  static const cityChangeScuccecfully = "City changed scuccecfully";
 
 }

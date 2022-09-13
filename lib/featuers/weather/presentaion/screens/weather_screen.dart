@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/core/utils/app_strings.dart';
 import 'package:weather_app/core/utils/component.dart';
@@ -49,10 +50,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void _changeCity() async {
     //setState(() {});
     _isCityChangedInDrawer = true;
-   _userState =  getUserState();
+    _userState = getUserState();
     _getFiveDaysWeather(_userState);
     _getWeatherData(_userState);
-    
+    //ScaffoldMessenger.of(context).showSnackBar(
+      //const SnackBar(
+       // content: Text(AppStrings.cityChangeScuccecfully),
+    //  ),
+
+    //);
+    Fluttertoast.showToast(msg: AppStrings.cityChangeScuccecfully,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.green);
   }
 
   @override
