@@ -26,6 +26,7 @@ A new Flutter project.
 
 <div>
   <img src="https://user-images.githubusercontent.com/32137323/190085555-fb88d663-5555-4963-98b2-d04a89ff597b.jpg" width="500">
+  <img src="https://user-images.githubusercontent.com/32137323/190204477-e45148af-24cf-45a0-b248-4ed70bdc7591.jpg" width="500">
  </div>
 ![Screenshot_2022-09-14-08-58-42-188_com example weather_app](https://user-images.githubusercontent.com/32137323/190204477-e45148af-24cf-45a0-b248-4ed70bdc7591.jpg)
 
