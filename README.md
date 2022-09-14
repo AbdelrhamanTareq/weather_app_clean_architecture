@@ -25,7 +25,7 @@ A new Flutter project.
 <li>change city screen
 
 <div>
-  <img src="![Screenshot_2022-09-14-08-58-38-218_com example weather_app](https://user-images.githubusercontent.com/32137323/190085199-3e69f715-f54c-45cd-baa3-   b1dd8d7285a6.jpg)">
-
-
-</div>
+![Screenshot_2022-09-14-08-58-38-218_com example weather_app](https://user-images.githubusercontent.com/32137323/190085555-fb88d663-5555-4963-98b2-d04a89ff597b.jpg)
+![Screenshot_2022-09-14-08-58-42-188_com example weather_app](https://user-images.githubusercontent.com/32137323/190085615-c3a2b128-07fb-4d80-b6e2-c5fa5f0ee244.jpg)
+![Screenshot_2022-09-14-08-58-45-863_com example weather_app](https://user-images.githubusercontent.com/32137323/190085649-0a429a8c-5de7-4461-9274-08c0e41a6f01.jpg)
+  </div>
