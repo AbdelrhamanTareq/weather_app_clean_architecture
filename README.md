@@ -25,8 +25,7 @@ A new Flutter project.
 <li>change city screen
 
 <div>
-  <img src="![Screenshot_2022-09-14-08-58-38-218_com example weather_app](https://user-images.githubusercontent.com/32137323/190085199-3e69f715-f54c-45cd-baa3-   b1dd8d7285a6.jpg)
-" alt="Girl in a jacket">
+  <img src="![Screenshot_2022-09-14-08-58-38-218_com example weather_app](https://user-images.githubusercontent.com/32137323/190085199-3e69f715-f54c-45cd-baa3-   b1dd8d7285a6.jpg)">
 
 
 </div>
