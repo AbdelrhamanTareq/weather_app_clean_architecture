@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-## This is a weather app made with flutter and dart and bloc as state management, dio for api handling
+## This is a weather app made with flutter and dart and bloc as state management, dio for api handling , shared preferences for loacal data
 
 ## In this app you can get current weather in your city and next four days weather 
 
