@@ -1,12 +1,12 @@
-import 'package:weather_app/core/errors/exception.dart';
-import 'package:weather_app/core/network/network_info.dart';
-import 'package:weather_app/featuers/weather/data/data_sources/local_data_source.dart';
-import 'package:weather_app/featuers/weather/data/data_sources/remote_data_sorce.dart';
-import 'package:weather_app/featuers/weather/domain/entity/five_days_weather.dart';
-import 'package:weather_app/featuers/weather/domain/entity/weather_data_entity.dart';
-import 'package:weather_app/core/errors/failure.dart';
+import '../../../../core/errors/exception.dart';
+import '../../../../core/network/network_info.dart';
+import '../data_sources/local_data_source.dart';
+import '../data_sources/remote_data_sorce.dart';
+import '../../domain/entity/five_days_weather.dart';
+import '../../domain/entity/weather_data_entity.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:weather_app/featuers/weather/domain/reipostery/weather_repositery.dart';
+import '../../domain/reipostery/weather_repositery.dart';
 
 class WeatherDataImpl extends WeatherRepositery {
   final WeatherRemoteDataSource weatherRemoteDataSource;

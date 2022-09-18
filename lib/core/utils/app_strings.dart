@@ -31,5 +31,7 @@ class AppStrings {
   static const changeYourCountry = "Change your country";
   /////////////////////////////////////////////////
   static const cityChangeScuccecfully = "City changed scuccecfully";
-
+  /////////////////////////////////////////////////
+  static const sunrise = "Sunrise";
+  static const sunset = "Sunset";
 }

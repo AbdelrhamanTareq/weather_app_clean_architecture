@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:weather_app/featuers/weather/domain/entity/weather_data_entity.dart';
+import '../../../domain/entity/weather_data_entity.dart';
 
 abstract class WeatherStates  extends Equatable{
   const WeatherStates();

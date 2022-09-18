@@ -1,22 +1,23 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/core/utils/component.dart';
-import 'package:weather_app/core/widgets/drawer.dart' as app_drawer;
-import 'package:weather_app/core/widgets/error_widget.dart' as error_widget;
-import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
-import 'package:weather_app/featuers/weather/domain/entity/five_days_weather.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weahter_states.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weather_cubit.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/component.dart';
+import '../../../../core/widgets/drawer.dart' as app_drawer;
+import '../../../../core/widgets/error_widget.dart' as error_widget;
+import '../../../onboarding/presentation/cubits/onboarding_cubit.dart';
+import '../../domain/entity/five_days_weather.dart';
+import '../bloc/five_days_weather/five_days_weahter_states.dart';
+import '../bloc/five_days_weather/five_days_weather_cubit.dart';
 
-import 'package:weather_app/featuers/weather/presentaion/bloc/weather/weather_cubit.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/weather/weather_states.dart';
-import 'package:weather_app/featuers/weather/presentaion/widgets/text_padding.dart';
+import '../bloc/weather/weather_cubit.dart';
+import '../bloc/weather/weather_states.dart';
+import '../widgets/text_padding.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -48,18 +49,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   void _changeCity() async {
-    //setState(() {});
     _isCityChangedInDrawer = true;
     _userState = getUserState();
     _getFiveDaysWeather(_userState);
     _getWeatherData(_userState);
     //ScaffoldMessenger.of(context).showSnackBar(
-      //const SnackBar(
-       // content: Text(AppStrings.cityChangeScuccecfully),
+    //const SnackBar(
+    // content: Text(AppStrings.cityChangeScuccecfully),
     //  ),
 
     //);
-    Fluttertoast.showToast(msg: AppStrings.cityChangeScuccecfully,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.green);
+    Fluttertoast.showToast(
+        msg: AppStrings.cityChangeScuccecfully,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green);
   }
 
   @override
@@ -87,6 +90,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           slivers: [
             _buildWatherColumn(),
             _buildFiveDaysWeaherData(),
+            _buildSunsetAndSunriseWidget(),
           ],
         ),
       ),
@@ -159,8 +163,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ],
                 );
               } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return Column(
+                
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height / 2,),
+                    buildCirclreIndicator(),
+                  ],
                 );
               }
             },
@@ -170,7 +178,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
     );
   }
 
-  _buildFiveDaysWeaherData() {
+  Center buildCirclreIndicator() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildFiveDaysWeaherData() {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -196,46 +210,154 @@ class _WeatherScreenState extends State<WeatherScreen> {
             } else if (state is LoadedFiveDaysWeatherState) {
               final newData = _filterFiveDaysWeather(state.weather);
               log(newData[1].dtTxt);
-              return ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                //scrollDirection: Axis.horizontal,
-                itemCount: newData.length,
-                separatorBuilder: (_, index) => Divider(
-                  color: Colors.grey[800],
-                ),
-                itemBuilder: (_, index) {
-                  return ListTile(
-                    visualDensity: const VisualDensity(vertical: 4),
-                    leading: Text(
-                      DateFormat('EEEE').format(
-                        DateTime.parse(newData[index].dtTxt),
+              return Container(
+                width: double.infinity,
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(10)),
+                child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  //scrollDirection: Axis.horizontal,
+                  itemCount: newData.length,
+                  separatorBuilder: (_, index) => Divider(
+                    color: Colors.grey[800],
+                  ),
+                  itemBuilder: (_, index) {
+                    return ListTile(
+                      visualDensity: const VisualDensity(vertical: 4),
+                      leading: Text(
+                        DateFormat('EEEE').format(
+                          DateTime.parse(newData[index].dtTxt),
+                        ),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    trailing: Column(
-                      children: [
-                        Text(
-                          '${newData[index].main.temp.floor().toString()} \u2103',
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 20),
-                        ),
-                        Text(
-                          newData[index].weather[0].main,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 18),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                      trailing: Column(
+                        children: [
+                          Text(
+                            '${newData[index].main.temp.floor().toString()} \u2103',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 20),
+                          ),
+                          Text(
+                            newData[index].weather[0].main,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               );
             } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return 
+              Container();
+              //buildCirclreIndicator();
             }
           }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSunsetAndSunriseWidget() {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          BlocBuilder<WeatherCubit, WeatherStates>(builder: ((context, state) {
+            if (state is ErrorWeatherState) {
+              return Container();
+            } else if (state is LoadedWeatherState) {
+              return Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black.withOpacity(0.5),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            // color: Colors.blue,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  AppStrings.sunrise,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 24),
+                                ),
+                              ),
+                              Text(
+                                "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunrise * 1000))} AM",
+                                style: const TextStyle(
+                                    fontSize: 24, color: Colors.white),
+                              ),
+                              const Icon(
+                                CupertinoIcons.sunrise_fill,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            ],
+                          )),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            // color: Colors.blue,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  AppStrings.sunset,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 24),
+                                ),
+                              ),
+                              Text(
+                                "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunset * 1000))} PM",
+                                style: const TextStyle(
+                                    fontSize: 24, color: Colors.white),
+                              ),
+                              const Icon(
+                                CupertinoIcons.sunset_fill,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return
+              Container();
+              // buildCirclreIndicator();
+            }
+          }))
         ],
       ),
     );

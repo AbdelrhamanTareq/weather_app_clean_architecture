@@ -6,6 +6,7 @@ class WeatherData extends Equatable {
   late final Main main;
   late final Wind wind;
   late final Clouds clouds;
+  late final Sys sys;
   late final String name;
   late final int  dt;
   WeatherData({
@@ -13,6 +14,7 @@ class WeatherData extends Equatable {
     required this.main,
     required this.wind,
     required this.clouds,
+    required this.sys,
     required this.name,
     required this.dt,
   });
@@ -46,6 +48,17 @@ class Main {
     required this.tempMax,
     required this.pressure,
     required this.humidity,
+  });
+}
+
+class Sys {
+  late final String country;
+  late final int sunrise;
+  late final int sunset;
+  Sys({
+    required this.country,
+    required this.sunrise,
+    required this.sunset,
   });
 }
 

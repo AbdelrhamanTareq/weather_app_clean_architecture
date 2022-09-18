@@ -1,4 +1,4 @@
-import 'package:weather_app/featuers/weather/domain/entity/five_days_weather.dart';
+import '../../domain/entity/five_days_weather.dart';
 
 class FiveDaysDataWeatherModel extends FiveDaysWeather {
   FiveDaysDataWeatherModel({

@@ -1,6 +1,6 @@
-import 'package:weather_app/core/errors/errors.dart';
-import 'package:weather_app/core/errors/failure.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
+import '../errors/errors.dart';
+import '../errors/failure.dart';
+import 'app_strings.dart';
 import '../helpers/cache_helper.dart';
 import '../../injection_container.dart' as di;
 

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:weather_app/core/api/dio_consumer.dart';
-import 'package:weather_app/core/api/end_point.dart';
-import 'package:weather_app/core/errors/exception.dart';
-import 'package:weather_app/core/errors/failure.dart';
-import 'package:weather_app/featuers/weather/data/models/five_days_weather_data_model.dart';
-import 'package:weather_app/featuers/weather/data/models/weather_data_model.dart';
+import '../../../../core/api/dio_consumer.dart';
+import '../../../../core/api/end_point.dart';
+import '../../../../core/errors/exception.dart';
+import '../../../../core/errors/failure.dart';
+import '../models/five_days_weather_data_model.dart';
+import '../models/weather_data_model.dart';
 
 abstract class WeatherRemoteDataSource {
   Future<WeatherDataModel> getWeatherData({String? name});

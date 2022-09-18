@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:weather_app/core/utils/component.dart';
+import '../../../../../core/utils/component.dart';
 
-import 'package:weather_app/featuers/weather/domain/usecase/get_weather_data_usecase.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/weather/weather_states.dart';
+import '../../../domain/usecase/get_weather_data_usecase.dart';
+import 'weather_states.dart';
 
 class WeatherCubit extends Cubit<WeatherStates> {
   final GetWeatherDataUsecase weatherDataUsecase;

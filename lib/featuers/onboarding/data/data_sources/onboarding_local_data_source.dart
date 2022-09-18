@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
+import '../../../../core/utils/app_strings.dart';
 
 abstract class OnboardingLocalDataSource {
   Future<bool> setOnboardingFinishToken();

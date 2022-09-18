@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_app/core/errors/exception.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/featuers/weather/data/models/five_days_weather_data_model.dart';
-import 'package:weather_app/featuers/weather/data/models/weather_data_model.dart';
-import 'package:weather_app/featuers/weather/domain/entity/five_days_weather.dart';
-import 'package:weather_app/featuers/weather/domain/entity/weather_data_entity.dart';
+import '../../../../core/errors/exception.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../models/five_days_weather_data_model.dart';
+import '../models/weather_data_model.dart';
+import '../../domain/entity/five_days_weather.dart';
+import '../../domain/entity/weather_data_entity.dart';
 
 abstract class LocalDataSource {
   Future<WeatherData> getLocalWeatherData();
