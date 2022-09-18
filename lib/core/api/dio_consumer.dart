@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:weather_app/core/api/api_consumer.dart';
-import 'package:weather_app/core/api/api_constant.dart';
-import 'package:weather_app/core/api/dio_intercepoters.dart';
-import 'package:weather_app/core/api/status_code.dart';
-import 'package:weather_app/core/errors/exception.dart';
+import 'api_consumer.dart';
+import 'api_constant.dart';
+import 'dio_intercepoters.dart';
+import 'status_code.dart';
+import '../errors/exception.dart';
 
 import '../../injection_container.dart' as di;
 

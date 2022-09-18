@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/core/utils/component.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
-import 'package:weather_app/featuers/onboarding/presentation/screens/onboarding_screen.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weather_cubit.dart';
-import 'package:weather_app/featuers/weather/presentaion/screens/weather_screen.dart';
+import 'core/utils/component.dart';
+import 'core/utils/app_strings.dart';
+import 'featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
+import 'featuers/onboarding/presentation/screens/onboarding_screen.dart';
+import 'featuers/weather/presentaion/bloc/five_days_weather/five_days_weather_cubit.dart';
+import 'featuers/weather/presentaion/screens/weather_screen.dart';
 
 import 'featuers/weather/presentaion/bloc/weather/weather_cubit.dart';
 import 'injection_container.dart' as di;

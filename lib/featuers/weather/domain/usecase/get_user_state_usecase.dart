@@ -1,4 +1,4 @@
-import 'package:weather_app/featuers/weather/domain/reipostery/weather_repositery.dart';
+import '../reipostery/weather_repositery.dart';
 
 class GetUserStateUsecase {
   final WeatherRepositery weatherRepositery;

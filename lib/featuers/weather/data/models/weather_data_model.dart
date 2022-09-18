@@ -1,4 +1,4 @@
-import 'package:weather_app/featuers/weather/domain/entity/weather_data_entity.dart';
+import '../../domain/entity/weather_data_entity.dart';
 
 class WeatherDataModel extends WeatherData {
   WeatherDataModel(
@@ -7,7 +7,9 @@ class WeatherDataModel extends WeatherData {
       required MainModel mainModel,
       required CloudsModel cloudsModel,
       required WindModel windModel,
-      required int dtModel})
+      required int dtModel,
+      required SysModel sysModel
+      })
       : super(
           name: name,
           weather: weatherModel,
@@ -15,6 +17,7 @@ class WeatherDataModel extends WeatherData {
           clouds: cloudsModel,
           wind: windModel,
           dt: dtModel,
+          sys: sysModel,
         );
 
   factory WeatherDataModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +30,7 @@ class WeatherDataModel extends WeatherData {
       mainModel: MainModel.fromJson(json['main']),
       cloudsModel: CloudsModel.fromJson(json['clouds']),
       windModel: WindModel.fromJson(json['wind']),
+      sysModel: SysModel.fromJson(json["sys"])
     );
   }
 
@@ -38,6 +42,7 @@ class WeatherDataModel extends WeatherData {
       'clouds': clouds,
       'wind': wind,
       'dt': dt,
+      "sys":sys,
     };
   }
 }
@@ -62,6 +67,22 @@ class WeatherModel extends Weather {
 
   Map<String, dynamic> toJson() {
     return {'main': main, 'description': description, 'icon': icon};
+  }
+}
+
+class SysModel extends Sys {
+  SysModel({required String country, required int sunrise, required int sunset})
+      : super(country: country, sunrise: sunrise, sunset: sunset);
+
+  factory SysModel.fromJson(Map<String, dynamic> json) {
+    return SysModel(
+        country: json["country"],
+        sunrise: json["sunrise"],
+        sunset: json["sunset"]);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'country': country, "sunrise": sunrise, "sunset": sunset};
   }
 }
 

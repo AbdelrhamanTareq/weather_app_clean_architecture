@@ -1,4 +1,4 @@
-import 'package:weather_app/featuers/onboarding/domain/repositrey/onboarding_repositrey.dart';
+import '../repositrey/onboarding_repositrey.dart';
 
 class SetStateUsecase {
   final OnboardingRepositrey onboardingRepositrey;

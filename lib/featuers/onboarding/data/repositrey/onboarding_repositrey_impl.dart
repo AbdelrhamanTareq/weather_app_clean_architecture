@@ -1,5 +1,5 @@
-import 'package:weather_app/featuers/onboarding/data/data_sources/onboarding_local_data_source.dart';
-import 'package:weather_app/featuers/onboarding/domain/repositrey/onboarding_repositrey.dart';
+import '../data_sources/onboarding_local_data_source.dart';
+import '../../domain/repositrey/onboarding_repositrey.dart';
 
 class OnBoardingRepositreyImpl implements OnboardingRepositrey {
 

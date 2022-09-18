@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/core/widgets/city_picker.dart';
+import '../utils/app_strings.dart';
+import 'city_picker.dart';
 
 class Drawer extends StatelessWidget {
   const Drawer(

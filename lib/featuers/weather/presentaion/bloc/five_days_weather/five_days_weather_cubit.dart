@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:weather_app/core/utils/component.dart';
-import 'package:weather_app/featuers/weather/domain/usecase/get_five_days_weather_data_usecase.dart';
-import 'package:weather_app/featuers/weather/presentaion/bloc/five_days_weather/five_days_weahter_states.dart';
+import '../../../../../core/utils/component.dart';
+import '../../../domain/usecase/get_five_days_weather_data_usecase.dart';
+import 'five_days_weahter_states.dart';
 
 class FiveDaysWeatherCubit extends Cubit<FiveDaysWeatherStates> {
   final GetFiveDaysWeatherDataUsecase fiveDaysWeatherDataUsecase;

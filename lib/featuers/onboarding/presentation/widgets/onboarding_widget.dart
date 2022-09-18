@@ -28,9 +28,15 @@ class OnboardingWidget extends StatelessWidget {
               height: 200,
             ),
           ),
-          Text(
-            title,
-            style:   TextStyle(color:  Colors.blue[800], fontSize: 35),
+          Container(
+          //  width: 500,
+            alignment: Alignment.center,
+            child: Text(
+              title,
+              style:   TextStyle(color:  Colors.blue[800], fontSize: 33),
+              textAlign: TextAlign.center,
+              
+            ),
           ),
         const  SizedBox(height: 20,),
           Container(
@@ -44,7 +50,7 @@ class OnboardingWidget extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style:  TextStyle(
                 color: Colors.grey[700],
-                fontSize: 26,
+                fontSize: 24,
               ),
             ),
           )

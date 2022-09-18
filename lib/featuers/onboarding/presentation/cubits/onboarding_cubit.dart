@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/featuers/onboarding/domain/entity/onboarding.dart';
-import 'package:weather_app/featuers/onboarding/domain/usecases/get_onboarding_finished_token_usecase.dart';
-import 'package:weather_app/featuers/onboarding/domain/usecases/set_onboarding_finished_token_usecase.dart';
-import 'package:weather_app/featuers/onboarding/domain/usecases/set_state_usecase.dart';
-import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_states.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../domain/entity/onboarding.dart';
+import '../../domain/usecases/get_onboarding_finished_token_usecase.dart';
+import '../../domain/usecases/set_onboarding_finished_token_usecase.dart';
+import '../../domain/usecases/set_state_usecase.dart';
+import 'onboarding_states.dart';
 
 class OnboardingCubit extends Cubit<OnBoardingStates> {
   final GetOnbardingFinishedTokenUsecase getOnbardingFinishedTokenUsecase;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:weather_app/core/utils/app_strings.dart';
-import 'package:weather_app/core/widgets/city_picker.dart';
-import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_cubit.dart';
-import 'package:weather_app/featuers/onboarding/presentation/cubits/onboarding_states.dart';
-import 'package:weather_app/featuers/onboarding/presentation/widgets/onboarding_widget.dart';
-import 'package:weather_app/featuers/weather/presentaion/screens/weather_screen.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/city_picker.dart';
+import '../cubits/onboarding_cubit.dart';
+import '../cubits/onboarding_states.dart';
+import '../widgets/onboarding_widget.dart';
+import '../../../weather/presentaion/screens/weather_screen.dart';
 
 /*
 class OnboardingScreen extends StatefulWidget {
