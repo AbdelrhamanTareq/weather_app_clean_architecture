@@ -6,8 +6,8 @@ A new Flutter project.
 
 ## This is a weather app made with flutter and dart and bloc as state management, dio for api handling , shared preferences for loacal data
 
- In this app you can get current weather in your city and next four days weather 
- you can also get sunrise and sunset date in your city
+ <p>In this app you can get current weather in your city and next four days weather 
+ <p>you can also get sunrise and sunset date in your city
 
 ## Features
 
