@@ -34,4 +34,10 @@ class AppStrings {
   /////////////////////////////////////////////////
   static const sunrise = "Sunrise";
   static const sunset = "Sunset";
+  static const wind = "Wind";
+  static const pressure = "Pressure";
+  static const humidaty = "Humidity ";
+  static const humidatyAsset = "assets/images/humidity.png";
+  static const windAsset = "assets/images/wind.png";
+  static const pressureAsset = "assets/images/atmospheric.png";
 }
