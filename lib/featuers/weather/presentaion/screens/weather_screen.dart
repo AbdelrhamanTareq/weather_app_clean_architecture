@@ -91,6 +91,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             _buildWatherColumn(),
             _buildFiveDaysWeaherData(),
             _buildSunsetAndSunriseWidget(),
+            _buildOtherWeatherData()
           ],
         ),
       ),
@@ -164,9 +165,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 );
               } else {
                 return Column(
-                
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 2,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                    ),
                     buildCirclreIndicator(),
                   ],
                 );
@@ -175,12 +177,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Center buildCirclreIndicator() {
-    return const Center(
-      child: CircularProgressIndicator(),
     );
   }
 
@@ -221,8 +217,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   shrinkWrap: true,
                   //scrollDirection: Axis.horizontal,
                   itemCount: newData.length,
-                  separatorBuilder: (_, index) => Divider(
-                    color: Colors.grey[800],
+                  separatorBuilder: (_, index) => const Divider(
+                    color: Colors.black,
                   ),
                   itemBuilder: (_, index) {
                     return ListTile(
@@ -253,8 +249,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
               );
             } else {
-              return 
-              Container();
+              return Container();
               //buildCirclreIndicator();
             }
           }),
@@ -273,93 +268,114 @@ class _WeatherScreenState extends State<WeatherScreen> {
             } else if (state is LoadedWeatherState) {
               return Container(
                 margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black.withOpacity(0.5),
-                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            // color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  AppStrings.sunrise,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                ),
-                              ),
-                              Text(
-                                "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunrise * 1000))} AM",
-                                style: const TextStyle(
-                                    fontSize: 24, color: Colors.white),
-                              ),
-                              const Icon(
-                                CupertinoIcons.sunrise_fill,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ],
-                          )),
+                    CardWidget(
+                      title: AppStrings.sunrise,
+                      data:
+                          "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunrise * 1000))} AM",
+                      iconOrAsset: const Icon(
+                        CupertinoIcons.sunrise_fill,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
                     const SizedBox(
                       width: 5,
                     ),
-                    Expanded(
-                      child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            // color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  AppStrings.sunset,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                ),
-                              ),
-                              Text(
-                                "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunset * 1000))} PM",
-                                style: const TextStyle(
-                                    fontSize: 24, color: Colors.white),
-                              ),
-                              const Icon(
-                                CupertinoIcons.sunset_fill,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ],
-                          )),
+                    CardWidget(
+                      title: AppStrings.sunset,
+                      data:
+                          "${DateFormat("hh:mm").format(DateTime.fromMillisecondsSinceEpoch(state.weather.sys.sunset * 1000))} PM",
+                      iconOrAsset: const Icon(
+                        CupertinoIcons.sunset_fill,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
                   ],
                 ),
               );
             } else {
-              return
-              Container();
+              return Container();
               // buildCirclreIndicator();
             }
           }))
         ],
       ),
+    );
+  }
+
+  Widget _buildOtherWeatherData() {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          BlocBuilder<WeatherCubit, WeatherStates>(builder: ((context, state) {
+            if (state is ErrorWeatherState) {
+              return Container();
+            } else if (state is LoadedWeatherState) {
+              return Container(
+                margin: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CardWidget(
+                      data: "${state.weather.main.humidity} %",
+                      title: AppStrings.humidaty,
+                      iconOrAsset: Image.asset(
+                        AppStrings.humidatyAsset,
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    CardWidget(
+                      data: "${state.weather.main.pressure}",
+                      title: AppStrings.pressure,
+                      iconOrAsset: Image.asset(
+                        AppStrings.pressureAsset,
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    CardWidget(
+                      data: "${state.weather.wind.speed.toInt()} Km/hr",
+                      title: AppStrings.wind,
+                      iconOrAsset: Image.asset(
+                        "assets/images/wind.png",
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Container();
+            }
+          }))
+        ],
+      ),
+    );
+  }
+
+  Center buildCirclreIndicator() {
+    return const Center(
+      child: CircularProgressIndicator(),
     );
   }
 
@@ -383,5 +399,52 @@ class _WeatherScreenState extends State<WeatherScreen> {
       }
     }
     return newList;
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    Key? key,
+    required this.data,
+    required this.title,
+    required this.iconOrAsset,
+  }) : super(key: key);
+
+  final String title;
+  final String data;
+  final Widget iconOrAsset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+          height: 200,
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                child: Text(
+                  title,
+                  style: const TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ),
+              Text(
+                data,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+              iconOrAsset
+            ],
+          )),
+    );
   }
 }
