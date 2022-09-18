@@ -115,12 +115,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
             },
             builder: (context, state) {
               if (state is ErrorWeatherState) {
-                return error_widget.ErrorWidget(
-                  errorText: state.message,
-                  onPress: () {
-                    _getWeatherData(_userState);
-                    _getFiveDaysWeather(_userState);
-                  },
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height/4,),
+                    error_widget.ErrorWidget(
+                      errorText: state.message,
+                      onPress: () {
+                        _getWeatherData(_userState);
+                        _getFiveDaysWeather(_userState);
+                      },
+                    ),
+                  ],
                 );
               } else if (state is LoadedWeatherState) {
                 return Column(
@@ -196,13 +203,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
             if (state is ErrorFiveDaysWeatherState) {
               log("$state");
               // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-              return error_widget.ErrorWidget(
-                errorText: state.message,
-                onPress: () {
-                  _getWeatherData(_userState);
-                  _getFiveDaysWeather(_userState);
-                },
-              );
+              return Container();
+               //error_widget.ErrorWidget(
+                //errorText: state.message,
+                //onPress: () {
+                  //_getWeatherData(_userState);
+                  //_getFiveDaysWeather(_userState);
+                //},
+             // );
             } else if (state is LoadedFiveDaysWeatherState) {
               final newData = _filterFiveDaysWeather(state.weather);
               log(newData[1].dtTxt);

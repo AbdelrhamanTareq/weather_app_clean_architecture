@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          title: 'Weather App',
+          title: 'Al-Taqs',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             fontFamily: AppStrings.fontName,
