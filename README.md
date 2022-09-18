@@ -8,6 +8,7 @@ A new Flutter project.
 
  <p>In this app you can get current weather in your city and next four days weather 
  <p>you can also get sunrise and sunset date in your city
+ <p>you can also get humdaity, pressure and wind speed
 
 ## Features
 
