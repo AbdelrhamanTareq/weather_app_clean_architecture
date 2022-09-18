@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/utils/app_strings.dart';
 
 class ErrorWidget extends StatelessWidget {
   final VoidCallback? onPress;
@@ -28,11 +29,7 @@ class ErrorWidget extends StatelessWidget {
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
           ),
         ),
-        const Text(
-          'Try again',
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
-        ),
+        
         Container(
           height: 55,
           width: MediaQuery.of(context).size.width * 0.55,
@@ -45,7 +42,7 @@ class ErrorWidget extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),
             child: const Text(
-              'reload_screen',
+              AppStrings.tryAgain,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
