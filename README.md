@@ -20,7 +20,7 @@ A new Flutter project.
 <li>handle local data source with shared preferences package
 
 
-### App Pages
+## App Pages
   
 <li>onboarding screen
 <li>weather screen
